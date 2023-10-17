@@ -10,7 +10,7 @@ const Customers = lazy(() => import("./pages/Customers"));
 
 function App() {
   return (
-    <div className="h-full">
+    <div className="h-screen">
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <BrowserRouter>
           <Suspense fallback={<Loader />}>
