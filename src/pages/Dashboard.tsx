@@ -1,6 +1,9 @@
 import DashboardCard from "@/components/DashboardCard";
 import SearchInput from "@/components/SearchInput";
+import DashboardBarChart from "@/components/charts/DashboardBarChart";
+import DashboardProgressbar from "@/components/charts/DashboardProgressbar";
 import { User } from "@nextui-org/react";
+import { Card, Title } from "@tremor/react";
 import { Bell } from "lucide-react";
 
 const cards = [
@@ -30,6 +33,39 @@ const cards = [
   },
 ];
 
+const progressData = [
+  {
+    item: "Laptops",
+    value: 45,
+    color: "sky",
+    total: 20000,
+  },
+  {
+    item: "Bags",
+    value: 85,
+    color: "rose",
+    total: 10000,
+  },
+  {
+    item: "Shoes",
+    value: 65,
+    color: "orange",
+    total: 15000,
+  },
+  {
+    item: "T-Shirts",
+    value: 25,
+    color: "green",
+    total: 25000,
+  },
+  {
+    item: "Jeans",
+    value: 75,
+    color: "violet",
+    total: 5000,
+  },
+];
+
 const Dashboard = () => {
   return (
     <div className="h-full overflow-y-auto w-full">
@@ -42,16 +78,31 @@ const Dashboard = () => {
           <User
             name=""
             avatarProps={{
-              src: "https://avatars.githubusercontent.com/u/30373425?v=4",
+              src: "./dp.png",
             }}
           />
         </div>
       </div>
-      <div className="p-8 bg-primary/5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <section className="p-8 bg-primary/5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {cards.map((card) => (
           <DashboardCard key={card.title} {...card} />
         ))}
-      </div>
+      </section>
+      <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 p-8">
+        <div className="col-span-4">
+          <DashboardBarChart />
+        </div>
+        <div className="col-span-3 ">
+          <Card className="max-w-sm mx-auto">
+            <Title className="mb-2">INVENTORY</Title>
+            <div className="flex flex-col gap-y-2">
+              {progressData.map((data) => (
+                <DashboardProgressbar key={data.item} {...data} />
+              ))}
+            </div>
+          </Card>
+        </div>
+      </section>
     </div>
   );
 };
