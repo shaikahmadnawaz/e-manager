@@ -26,7 +26,7 @@ const SearchInput = () => {
           "!cursor-text",
         ],
       }}
-      placeholder="Search for products, customers, orders..."
+      placeholder="Search for products, customers, transactions..."
       startContent={
         <Search className="text-black/50 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
       }
