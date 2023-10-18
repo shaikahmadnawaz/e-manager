@@ -13,7 +13,7 @@ import SidebarItem from "./SidebarItem";
 
 const Sidebar = () => {
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const isResizingRef = useRef(false);
+  // const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
   const navbarRef = useRef<ElementRef<"div">>(null);
   const [isResetting, setIsResetting] = useState(false);
@@ -27,39 +27,39 @@ const Sidebar = () => {
     }
   }, [isMobile]);
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    event.stopPropagation();
+  // const handleMouseDown = (
+  //   event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  // ) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
 
-    isResizingRef.current = true;
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-  };
+  //   isResizingRef.current = true;
+  //   document.addEventListener("mousemove", handleMouseMove);
+  //   document.addEventListener("mouseup", handleMouseUp);
+  // };
 
-  const handleMouseMove = (event: MouseEvent) => {
-    if (!isResizingRef.current) return;
-    let newWidth = event.clientX;
+  // const handleMouseMove = (event: MouseEvent) => {
+  //   if (!isResizingRef.current) return;
+  //   let newWidth = event.clientX;
 
-    if (newWidth < 240) newWidth = 240;
-    if (newWidth > 480) newWidth = 480;
+  //   if (newWidth < 240) newWidth = 240;
+  //   if (newWidth > 480) newWidth = 480;
 
-    if (sidebarRef.current && navbarRef.current) {
-      sidebarRef.current.style.width = `${newWidth}px`;
-      navbarRef.current.style.setProperty("left", `${newWidth}px`);
-      navbarRef.current.style.setProperty(
-        "width",
-        `calc(100% - ${newWidth}px)`
-      );
-    }
-  };
+  //   if (sidebarRef.current && navbarRef.current) {
+  //     sidebarRef.current.style.width = `${newWidth}px`;
+  //     navbarRef.current.style.setProperty("left", `${newWidth}px`);
+  //     navbarRef.current.style.setProperty(
+  //       "width",
+  //       `calc(100% - ${newWidth}px)`
+  //     );
+  //   }
+  // };
 
-  const handleMouseUp = () => {
-    isResizingRef.current = false;
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mouseup", handleMouseUp);
-  };
+  // const handleMouseUp = () => {
+  //   isResizingRef.current = false;
+  //   document.removeEventListener("mousemove", handleMouseMove);
+  //   document.removeEventListener("mouseup", handleMouseUp);
+  // };
 
   const resetWidth = () => {
     if (sidebarRef.current && navbarRef.current) {
@@ -96,18 +96,18 @@ const Sidebar = () => {
     },
     {
       icon: ShoppingBag,
-      label: "Search",
-      url: "/search",
+      label: "Products",
+      url: "/products",
     },
     {
       icon: Users,
       label: "Customers",
-      url: "/search",
+      url: "/customers",
     },
     {
       icon: History,
       label: "Transactions",
-      url: "/search",
+      url: "/transactions",
     },
   ];
 
@@ -132,20 +132,19 @@ const Sidebar = () => {
           <ChevronsLeft className="h-6 w-6" />
         </div>
         <div>
-          <h1>E-Manager</h1>
+          <h1 className="font-bold text-2xl">E-Manager</h1>
         </div>
         <div className="mt-4">
-          <p>Dashboard</p>
-          <div className="mt-4 flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-4">
             {routes.map((item) => (
               <SidebarItem key={item.label} {...item} />
             ))}
           </div>
         </div>
         <div
-          onMouseDown={handleMouseDown}
+          // onMouseDown={handleMouseDown}
           onClick={resetWidth}
-          className="opacity-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0"
+          className="opacity-0 group-hover/sidebar:opacity-100 transition absolute h-full w-1 bg-primary/10 right-0 top-0"
         />
       </aside>
       <div
