@@ -1,9 +1,12 @@
 import { cn } from "@/lib/utils";
 import {
+  BarChart4,
   ChevronsLeft,
   History,
   LayoutDashboard,
+  LineChart,
   MenuIcon,
+  PieChart,
   ShoppingBag,
   Users,
 } from "lucide-react";
@@ -111,12 +114,30 @@ const Sidebar = () => {
     },
   ];
 
+  const chartsRoutes = [
+    {
+      icon: BarChart4,
+      label: "Bar",
+      url: "/chart/bar",
+    },
+    {
+      icon: PieChart,
+      label: "Pie",
+      url: "/chart/pie",
+    },
+    {
+      icon: LineChart,
+      label: "Line",
+      url: "/chart/line",
+    },
+  ];
+
   return (
     <>
       <aside
         ref={sidebarRef}
         className={cn(
-          "group/sidebar h-full overflow-y-auto relative flex w-60 flex-col z-[99999] px-5 py-4",
+          "group/sidebar h-full overflow-y-auto relative flex w-60 flex-col z-[99999] px-5 py-4 bg-primary/5",
           isResetting && "transition-all ease-in-out duration-300",
           isMobile && "w-0"
         )}
@@ -136,7 +157,16 @@ const Sidebar = () => {
         </div>
         <div className="mt-4">
           <div className="flex flex-col gap-y-4">
+            <p className="capitalize font-medium">DASHBOARD</p>
             {routes.map((item) => (
+              <SidebarItem key={item.label} {...item} />
+            ))}
+          </div>
+        </div>
+        <div className="mt-4">
+          <div className="flex flex-col gap-y-4">
+            <p className="capitalize font-medium">CHARTS</p>
+            {chartsRoutes.map((item) => (
               <SidebarItem key={item.label} {...item} />
             ))}
           </div>
@@ -144,7 +174,7 @@ const Sidebar = () => {
         <div
           // onMouseDown={handleMouseDown}
           onClick={resetWidth}
-          className="opacity-0 group-hover/sidebar:opacity-100 transition absolute h-full w-1 bg-primary/10 right-0 top-0"
+          className="opacity-100 transition absolute h-full w-1 bg-primary/10 right-0 top-0"
         />
       </aside>
       <div
