@@ -42,6 +42,22 @@ const chartdata3: DataPoint[] = [
 
 export const DashboardBarChart: React.FC = () => {
   const [value, setValue] = React.useState<DataPoint | null>(null);
+  console.log(value);
+
+  const handleBarClick = (event: React.MouseEvent<HTMLElement>) => {
+    const x = event.nativeEvent.offsetX;
+
+    const index = Math.floor(
+      (x / event.currentTarget.clientWidth) * chartdata3.length
+    );
+
+    const dataPoint = chartdata3[index];
+
+    if (dataPoint) {
+      setValue(dataPoint);
+    }
+  };
+
   return (
     <>
       <Card>
@@ -53,7 +69,7 @@ export const DashboardBarChart: React.FC = () => {
           categories={["2022", "2023"]}
           colors={["neutral", "indigo"]}
           yAxisWidth={30}
-          onValueChange={(v) => setValue(v)}
+          onClick={handleBarClick}
         />
       </Card>
     </>

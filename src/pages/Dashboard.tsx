@@ -37,31 +37,26 @@ const progressData = [
   {
     item: "Laptops",
     value: 45,
-    color: "sky",
     total: 20000,
   },
   {
     item: "Bags",
     value: 85,
-    color: "rose",
     total: 10000,
   },
   {
     item: "Shoes",
     value: 65,
-    color: "orange",
     total: 15000,
   },
   {
     item: "T-Shirts",
     value: 25,
-    color: "green",
     total: 25000,
   },
   {
     item: "Jeans",
     value: 75,
-    color: "violet",
     total: 5000,
   },
 ];

@@ -3,14 +3,12 @@ import { Flex, Text, ProgressBar } from "@tremor/react";
 interface DashboardProgressbarProps {
   item: string;
   value: number;
-  color: string;
   total: number;
 }
 
 const DashboardProgressbar = ({
   item,
   value,
-  color,
   total,
 }: DashboardProgressbarProps) => (
   <>
@@ -20,7 +18,7 @@ const DashboardProgressbar = ({
       </Text>
       <Text>₹ {total}</Text>
     </Flex>
-    <ProgressBar value={value} color={color} className="mt-3" />
+    <ProgressBar value={value} color="orange" className="mt-3" />
   </>
 );
 
